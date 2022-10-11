@@ -18,14 +18,6 @@ const Data = () => {
   useEffect(() => {
     async function fetchData() {
       const res = await axios.get('https://sheltered-sea-10901.herokuapp.com/products');
-      // eslint-disable-next-line array-callback-return
-      const newRes = res.data.map((i) => {
-        // eslint-disable-next-line no-unused-vars
-        const createDate = new Date(i.created_at);
-        const newDate = createDate.getDate();
-        console.log(newDate);
-      });
-      console.log(newRes);
       setData(res.data);
     }
     fetchData();
@@ -49,7 +41,7 @@ const Data = () => {
               <td>{item.product_name}</td>
               <td>{item.category_name}</td>
               <td>{item.description}</td>
-              <td>{item.created_at}</td>
+              <td>{item.created_at.substring(0, 10)}</td>
               <td>{item.status}</td>
               <td>
                 <Button variant="success">Edit</Button>
