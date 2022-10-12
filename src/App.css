@@ -4,4 +4,10 @@
 .area{
     width: 40%;
 }
+.filter-container {
+    width: 30rem;
+}
+.search-btn {
+    margin-left: 10px;
+}
 

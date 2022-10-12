@@ -23,7 +23,7 @@ const Data = () => {
   useEffect(() => {
     async function fetchData() {
       const res = await axios.get('https://sheltered-sea-10901.herokuapp.com/products');
-      setData(res.data);
+      setData(res?.data || []);
     }
     fetchData();
   }, []);
