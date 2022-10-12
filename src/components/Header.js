@@ -50,7 +50,7 @@ const Header = () => {
               <option value="out_of_stock">Out_of_Stock</option>
               <option value="limited_available">Limited_available</option>
             </Form.Select>
-            <Form.Label>Created At</Form.Label>
+            {/* <Form.Label>Created At</Form.Label>
             <Form.Control
               type="datetime-local"
               placeholder="Enter Category"
@@ -58,10 +58,10 @@ const Header = () => {
             />
             <Form.Label>Updated At</Form.Label>
             <Form.Control
-              type="text"
+              type="datetime-local"
               placeholder="Enter Category"
               autoFocus
-            />
+            /> */}
 
           </Form>
         </Modal.Body>
