@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import Button from 'react-bootstrap/Button';
-import FormControl from 'react-bootstrap/FormControl';
+// import FormControl from 'react-bootstrap/FormControl';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
@@ -10,7 +10,8 @@ const Header = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     console.log(filterRef.current.value);
   };
   return (
@@ -82,16 +83,16 @@ const Header = () => {
       <div className="container">
         <div className="d-flex justify-content-between">
           <Button variant="primary" onClick={handleShow}>Add New Product</Button>
-          <div className="d-flex filter-container">
-            <FormControl
-              onChange={handleSubmit}
-              type="text"
-              placeholder="Search by name or category"
-              aria-label="Search"
-              aria-describedby="basic-addon2"
-              ref={filterRef}
-            />
-            <Button variant="primary" className="search-btn">Search</Button>
+          <div className="d-flex">
+            <Form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                className="filter-container-input"
+                placeholder="Search by name or category"
+                ref={filterRef}
+              />
+              <Button type="submit" className="search-btn">Search</Button>
+            </Form>
           </div>
         </div>
       </div>

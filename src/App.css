@@ -4,8 +4,8 @@
 .area{
     width: 40%;
 }
-.filter-container {
-    width: 30rem;
+.filter-container-input {
+    width: 18rem;
 }
 .search-btn {
     margin-left: 10px;
