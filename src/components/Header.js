@@ -41,7 +41,7 @@ const Header = () => {
             <Form.Label>Created By</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter Category"
+              placeholder="Your username"
               autoFocus
             />
             <Form.Label>Status</Form.Label>
