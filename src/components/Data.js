@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { useFormik } from 'formik';
 import PropTypes from 'prop-types';
+import Container from 'react-bootstrap/Container';
 
 const Data = ({
   data, filteredItem, handleDelete, handleUpdate,
@@ -28,62 +29,64 @@ const Data = ({
   return (
     <>
       <div className="container">
-        <Table responsive>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Category</th>
-              <th>Description</th>
-              <th>Created At</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredItem ? filteredItem.map((item) => (
-              <tr key={item.id}>
-                <td>{item.product_name}</td>
-                <td>{item.category_name}</td>
-                <td>{item.description}</td>
-                <td>{item.created_at.substring(0, 10)}</td>
-                <td>{item.status}</td>
-                <td>
-                  <Button variant="success" onClick={() => handleShow(item)}>
-                    Edit
-                  </Button>
-                </td>
-                <td>
-                  <Button
-                    variant="danger"
-                    onClick={() => handleDelete(item.id)}
-                  >
-                    Delete
-                  </Button>
-                </td>
+        <Container fluid>
+          <Table responsive="sm" className="square border">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Created At</th>
+                <th>Status</th>
               </tr>
-            )) : data.map((item) => (
-              <tr key={item.id}>
-                <td>{item.product_name}</td>
-                <td>{item.category_name}</td>
-                <td>{item.description}</td>
-                <td>{item.created_at.substring(0, 10)}</td>
-                <td>{item.status}</td>
-                <td>
-                  <Button variant="success" onClick={() => handleShow(item)}>
-                    Edit
-                  </Button>
-                </td>
-                <td>
-                  <Button
-                    variant="danger"
-                    onClick={() => handleDelete(item.id)}
-                  >
-                    Delete
-                  </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+            </thead>
+            <tbody>
+              {filteredItem ? filteredItem.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.product_name}</td>
+                  <td>{item.category_name}</td>
+                  <td>{item.description}</td>
+                  <td>{item.created_at.substring(0, 10)}</td>
+                  <td>{item.status}</td>
+                  <td>
+                    <Button variant="success" onClick={() => handleShow(item)}>
+                      Edit
+                    </Button>
+                  </td>
+                  <td>
+                    <Button
+                      variant="danger"
+                      onClick={() => handleDelete(item.id)}
+                    >
+                      Delete
+                    </Button>
+                  </td>
+                </tr>
+              )) : data.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.product_name}</td>
+                  <td>{item.category_name}</td>
+                  <td>{item.description}</td>
+                  <td>{item.created_at.substring(0, 10)}</td>
+                  <td>{item.status}</td>
+                  <td>
+                    <Button variant="success" onClick={() => handleShow(item)}>
+                      Edit
+                    </Button>
+                  </td>
+                  <td>
+                    <Button
+                      variant="danger"
+                      onClick={() => handleDelete(item.id)}
+                    >
+                      Delete
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </Container>
       </div>
       <Modal show={show} onHide={handleClose}>
 
