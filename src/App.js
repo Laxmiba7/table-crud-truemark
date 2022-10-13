@@ -24,16 +24,11 @@ const App = () => {
 
   useEffect(() => {
     fetchData();
-    return () => {
-      console.log('Clear');
-    };
   }, []);
   const addProduct = async (values) => {
-    console.log(values.product_name);
     try {
       const res = await axios.post('https://sheltered-sea-10901.herokuapp.com/products', values);
       setData((prevState) => ([...prevState, res.data]));
-      console.log(res.data);
     } catch (error) {
       console.log(error);
     }
