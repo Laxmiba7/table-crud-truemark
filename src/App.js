@@ -28,8 +28,8 @@ const App = () => {
       console.log('Clear');
     };
   }, []);
-
   const addProduct = async (values) => {
+    console.log(values.product_name);
     try {
       const res = await axios.post('https://sheltered-sea-10901.herokuapp.com/products', values);
       setData((prevState) => ([...prevState, res.data]));
@@ -51,8 +51,8 @@ const App = () => {
   };
 
   const filterProducts = (filter) => {
+    // eslint-disable-next-line max-len
     const filteredItems = data.filter((el) => el.product_name === filter);
-
     if (filteredItems.length) {
       return setFilter(filteredItems);
     }

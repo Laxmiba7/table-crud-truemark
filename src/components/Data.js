@@ -25,7 +25,6 @@ const Data = ({
       handleClose();
     },
   });
-
   return (
     <>
       <div className="container">

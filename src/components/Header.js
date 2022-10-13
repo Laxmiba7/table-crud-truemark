@@ -54,14 +54,11 @@ const Header = ({ addProduct, filterProducts }) => {
                 onChange={formik.handleChange}
                 value={formik.values.product_name}
               />
-              {/* <Form.Label>Category</Form.Label>
-              <Form.Control
-                type="text"
-                name="category_name"
-                placeholder="Enter Category"
-                onChange={formik.handleChange}
-                value={formik.values.category_name}
-              /> */}
+              <Form.Label>Category</Form.Label>
+              <Form.Select name="category_name" onChange={formik.handleChange}>
+                <option value="furniture">furniture</option>
+                <option value="dairy">dairy</option>
+              </Form.Select>
             </Form.Group>
             <Form.Group
               className="mb-3"
