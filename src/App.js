@@ -1,11 +1,9 @@
-import { Provider } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from './components/Header';
 import Data from './components/Data';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import store from './Redux/reducers/store';
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -47,7 +45,7 @@ const App = () => {
 
   const filterProducts = (filter) => {
     // eslint-disable-next-line max-len
-    const filteredItems = data.filter((el) => el.product_name === filter);
+    const filteredItems = data.filter((el) => el.product_name.toLowerCase() === filter.toLowerCase() || el.category_name === filter);
     if (filteredItems.length) {
       return setFilter(filteredItems);
     }
@@ -68,15 +66,15 @@ const App = () => {
 
   return (
     <div>
-      <Provider store={store}>
-        <Header addProduct={addProduct} filterProducts={filterProducts} />
-        <Data
-          data={data}
-          filteredItem={filter}
-          handleDelete={handleDelete}
-          handleUpdate={handleUpdate}
-        />
-      </Provider>
+
+      <Header addProduct={addProduct} filterProducts={filterProducts} />
+      <Data
+        data={data}
+        filteredItem={filter}
+        handleDelete={handleDelete}
+        handleUpdate={handleUpdate}
+      />
+
     </div>
   );
 };

@@ -40,7 +40,7 @@ const Header = ({ addProduct, filterProducts }) => {
   return (
     <>
       <Container fluid>
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleClose} className="p-5">
           <Modal.Header closeButton>
             <Modal.Title>Add Details</Modal.Title>
           </Modal.Header>

@@ -28,8 +28,9 @@ const Data = ({
   });
   return (
     <>
-      <div className="container">
-        <Container fluid>
+      <Container fluid>
+        <div className="container">
+
           <Table responsive="sm" className="square border">
             <thead>
               <tr>
@@ -38,6 +39,7 @@ const Data = ({
                 <th>Description</th>
                 <th>Created At</th>
                 <th>Status</th>
+                <th className="d-none">head</th>
               </tr>
             </thead>
             <tbody>
@@ -52,8 +54,6 @@ const Data = ({
                     <Button variant="success" onClick={() => handleShow(item)}>
                       Edit
                     </Button>
-                  </td>
-                  <td>
                     <Button
                       variant="danger"
                       onClick={() => handleDelete(item.id)}
@@ -61,6 +61,7 @@ const Data = ({
                       Delete
                     </Button>
                   </td>
+
                 </tr>
               )) : data.map((item) => (
                 <tr key={item.id}>
@@ -86,55 +87,56 @@ const Data = ({
               ))}
             </tbody>
           </Table>
-        </Container>
-      </div>
-      <Modal show={show} onHide={handleClose}>
 
-        <Modal.Header closeButton>
-          <Modal.Title>Edit Details</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form className="modal-form" onSubmit={formik.handleSubmit}>
-            <Form.Group className="">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                name="product_name"
-                placeholder="Name of the product"
-                value={formik.values.product_name}
-                onChange={formik.handleChange}
-                autoFocus
-              />
-              <Form.Label>Category</Form.Label>
-              <Form.Control
-                type="text"
-                name="category_name"
-                value={formik.values.category_name}
-                placeholder="Enter Category"
-                onChange={formik.handleChange}
-                autoFocus
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Description</Form.Label>
-              <Form.Control as="textarea" rows={3} name="description" value={formik.values.description} onChange={formik.handleChange} />
-            </Form.Group>
-            <Form.Label>Created By</Form.Label>
-            <Form.Control type="text" placeholder="Your username" autoFocus value={formik.values.created_by} name="created_by" onChange={formik.handleChange} />
-            <Form.Label>Status</Form.Label>
-            <Form.Select name="status" value={formik.values.status} onChange={formik.handleChange}>
-              <option value="in_stock">In_Stock</option>
-              <option value="out_of_stock">Out_of_Stock</option>
-              <option value="limited_available">Limited_available</option>
-            </Form.Select>
-            <div className="d-flex p-3">
-              <Button variant="primary" type="submit">
-                Save
-              </Button>
-            </div>
-          </Form>
-        </Modal.Body>
-      </Modal>
+        </div>
+        <Modal show={show} onHide={handleClose} className="p-5">
+
+          <Modal.Header closeButton>
+            <Modal.Title>Edit Details</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form className="modal-form" onSubmit={formik.handleSubmit}>
+              <Form.Group className="">
+                <Form.Label>Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="product_name"
+                  placeholder="Name of the product"
+                  value={formik.values.product_name}
+                  onChange={formik.handleChange}
+                  autoFocus
+                />
+                <Form.Label>Category</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="category_name"
+                  value={formik.values.category_name}
+                  placeholder="Enter Category"
+                  onChange={formik.handleChange}
+                  autoFocus
+                />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Description</Form.Label>
+                <Form.Control as="textarea" rows={3} name="description" value={formik.values.description} onChange={formik.handleChange} />
+              </Form.Group>
+              <Form.Label>Created By</Form.Label>
+              <Form.Control type="text" placeholder="Your username" autoFocus value={formik.values.created_by} name="created_by" onChange={formik.handleChange} />
+              <Form.Label>Status</Form.Label>
+              <Form.Select name="status" value={formik.values.status} onChange={formik.handleChange}>
+                <option value="in_stock">In_Stock</option>
+                <option value="out_of_stock">Out_of_Stock</option>
+                <option value="limited_available">Limited_available</option>
+              </Form.Select>
+              <div className="d-flex p-3">
+                <Button variant="primary" type="submit">
+                  Save
+                </Button>
+              </div>
+            </Form>
+          </Modal.Body>
+        </Modal>
+      </Container>
     </>
   );
 };
