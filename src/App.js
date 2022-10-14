@@ -1,25 +1,82 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Header from './components/Header';
+import Data from './components/Data';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [data, setData] = useState([]);
+  const [filter, setFilter] = useState(null);
+
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(
+        'https://sheltered-sea-10901.herokuapp.com/products',
+      );
+      setData(res?.data || []);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const addProduct = async (values) => {
+    try {
+      const res = await axios.post('https://sheltered-sea-10901.herokuapp.com/products', values);
+      setData((prevState) => ([...prevState, res.data]));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(
+        `https://sheltered-sea-10901.herokuapp.com/products/${id}`,
+      );
+      setData((prevState) => prevState.filter((el) => el.id !== id));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const filterProducts = (filter) => {
+    // eslint-disable-next-line max-len
+    const filteredItems = data.filter((el) => el.product_name.toLowerCase() === filter.toLowerCase() || el.category_name === filter);
+    if (filteredItems.length) {
+      return setFilter(filteredItems);
+    }
+    if (!filteredItems.length && filter.length) {
+      return setFilter([]);
+    }
+    return setFilter(null);
+  };
+
+  const handleUpdate = async (values) => {
+    try {
+      await axios.put(`https://sheltered-sea-10901.herokuapp.com/products/${values.id}`, values);
+    } catch (error) {
+      console.log(error);
+    }
+    fetchData();
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+
+      <Header addProduct={addProduct} filterProducts={filterProducts} />
+      <Data
+        data={data}
+        filteredItem={filter}
+        handleDelete={handleDelete}
+        handleUpdate={handleUpdate}
+      />
+
     </div>
   );
-}
+};
 
 export default App;
