@@ -1,17 +1,20 @@
 body {
-    font-family: 'Rubik', sans-serif;
-    font-size: 18px;
-}
-.container {
-    margin: 50px;
-}
-.area{
-    width: 40%;
-}
-.filter-container-input {
-    width: 18rem;
-}
-.search-btn {
-    margin-left: 10px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 18px;
 }
 
+.container {
+  margin: 50px;
+}
+
+.area {
+  width: 40%;
+}
+
+.filter-container-input {
+  width: 18rem;
+}
+
+.search-btn {
+  margin-left: 10px;
+}
